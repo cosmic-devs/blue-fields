@@ -6,7 +6,9 @@
     "build": "cross-env NODE_ENV=production vite build"
   },
   "dependencies": {
-    "vue": "^3.0.0-rc.1"
+    "vue": "^3.0.0-rc.1",
+    "vue-router": "^4.0.0-beta.9",
+    "vuex": "^4.0.0-beta.4"
   },
   "devDependencies": {
     "vite": "^1.0.0-rc.1",

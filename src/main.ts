@@ -1,5 +1,20 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import './index.css'
+import { RouterModule } from './modules/router'
+import { StoreModule } from './modules/store'
+import { HomeModule } from './modules/home'
+import { CoreModule } from './modules/core'
 
-createApp(App).mount('#app')
+function bootstrap() {
+  const routerModule = new RouterModule()
+  routerModule.install()
+
+  const storeModule = new StoreModule()
+  storeModule.install()
+
+  const homeModule = new HomeModule(routerModule.router!, storeModule.store!)
+  homeModule.install()
+
+  const coreModule = new CoreModule(routerModule.router!, storeModule.store!)
+  coreModule.install()
+}
+
+bootstrap()
