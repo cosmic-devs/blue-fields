@@ -1,5 +1,12 @@
 module.exports = {
-  purge: [],
+  purge: {
+    mode: 'layers',
+    layers: ['base', 'components', 'utilities'],
+    content: ['src/**/*.vue'],
+    options: {
+      keyframes: true
+    }
+  },
   target: 'relaxed',
   prefix: '',
   important: false,
