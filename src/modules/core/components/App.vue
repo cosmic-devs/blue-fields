@@ -1,12 +1,15 @@
 <template>
+  <app-locale-switcher />
   <router-view />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import AppLocaleSwitcher from './AppLocaleSwitcher.vue'
 
 export default defineComponent({
-  name: 'App'
+  name: 'App',
+  components: { AppLocaleSwitcher }
 })
 </script>
 

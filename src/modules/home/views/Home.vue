@@ -5,7 +5,7 @@
     class="px-4 py-2 m-2 bg-red-500 rounded-lg shadow-lg"
     @click="add(project)"
   >
-    Add project
+    {{ t('add_project') }}
   </button>
   <p v-for="project in projects" :key="project.id" class="bg-green-500">
     {{ project }}
@@ -13,15 +13,26 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive } from 'vue'
+import { computed, defineComponent, reactive, watch, inject } from 'vue'
 import { Location, Project, User } from 'vue-modules'
 import { Store, useStore } from 'vuex'
+import { useI18n } from 'vue-i18n'
 import HelloWorld from '../components/HelloWorld.vue'
 
 export default defineComponent({
   components: { HelloWorld },
   setup() {
     const store: Store<unknown> = useStore()
+    const setMeta = inject('meta')
+    const { t, locale } = useI18n()
+
+    watch(
+      locale,
+      () => {
+        setMeta(t('home.title'), t('home.description'))
+      },
+      { immediate: true }
+    )
 
     const user: User = {
       applications: [],
@@ -63,7 +74,7 @@ export default defineComponent({
       store.dispatch('home/ADD_PROJECT', project)
     const projects = computed(() => store.getters['home/GET_PROJECTS'])
 
-    return { add, project, projects }
+    return { add, project, projects, t }
   }
 })
 </script>

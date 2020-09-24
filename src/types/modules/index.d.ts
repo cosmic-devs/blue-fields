@@ -76,3 +76,7 @@ declare module 'vue-modules' {
   }
 
 }
+
+declare module 'en' {}
+declare module 'es' {}
+declare module 'pt' {}
