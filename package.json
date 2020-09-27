@@ -14,7 +14,7 @@
     "graphql": "^15.3.0",
     "graphql-tag": "^2.11.0",
     "vue": "^3.0.0",
-    "vue-i18n": "^9.0.0-beta.2",
+    "vue-i18n": "^9.0.0-beta.3",
     "vue-router": "^4.0.0-beta.11",
     "vuex": "^4.0.0-beta.4"
   },
