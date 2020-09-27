@@ -1,0 +1,509 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type AuthPayload {
+    "The document's ID."
+    _id: ID!
+    "The document's timestamp."
+    _ts: Long!
+    token: String!
+    user: User!
+}
+
+type Location {
+    address: String
+    latitude: Float!
+    longitude: Float!
+}
+
+type Mutation {
+    "Create a new document in the collection of 'AuthPayload'"
+    createAuthPayload(
+        "'AuthPayload' input values"
+        data: AuthPayloadInput!
+    ): AuthPayload!
+    "Create a new document in the collection of 'Observation'"
+    createObservation(
+        "'Observation' input values"
+        data: ObservationInput!
+    ): Observation!
+    "Create a new document in the collection of 'Position'"
+    createPosition(
+        "'Position' input values"
+        data: PositionInput!
+    ): Position!
+    createProject(data: CreateProjectInput): Project!
+    createUser(data: CreateUserInput): AuthPayload!
+    "Delete an existing document in the collection of 'AuthPayload'"
+    deleteAuthPayload(
+        "The 'AuthPayload' document's ID"
+        id: ID!
+    ): AuthPayload
+    "Delete an existing document in the collection of 'Observation'"
+    deleteObservation(
+        "The 'Observation' document's ID"
+        id: ID!
+    ): Observation
+    "Delete an existing document in the collection of 'Position'"
+    deletePosition(
+        "The 'Position' document's ID"
+        id: ID!
+    ): Position
+    "Delete an existing document in the collection of 'Project'"
+    deleteProject(
+        "The 'Project' document's ID"
+        id: ID!
+    ): Project
+    "Delete an existing document in the collection of 'User'"
+    deleteUser(
+        "The 'User' document's ID"
+        id: ID!
+    ): User
+    loginUser(data: LoginUserInput): AuthPayload!
+    logoutUser(data: LogoutInput): Boolean!
+    "Update an existing document in the collection of 'AuthPayload'"
+    updateAuthPayload(
+        "'AuthPayload' input values"
+        data: AuthPayloadInput!,
+        "The 'AuthPayload' document's ID"
+        id: ID!
+    ): AuthPayload
+    "Update an existing document in the collection of 'Observation'"
+    updateObservation(
+        "'Observation' input values"
+        data: ObservationInput!,
+        "The 'Observation' document's ID"
+        id: ID!
+    ): Observation
+    "Update an existing document in the collection of 'Position'"
+    updatePosition(
+        "'Position' input values"
+        data: PositionInput!,
+        "The 'Position' document's ID"
+        id: ID!
+    ): Position
+    "Update an existing document in the collection of 'Project'"
+    updateProject(
+        "'Project' input values"
+        data: ProjectInput!,
+        "The 'Project' document's ID"
+        id: ID!
+    ): Project
+    "Update an existing document in the collection of 'User'"
+    updateUser(
+        "'User' input values"
+        data: UserInput!,
+        "The 'User' document's ID"
+        id: ID!
+    ): User
+}
+
+type Observation {
+    "The document's ID."
+    _id: ID!
+    "The document's timestamp."
+    _ts: Long!
+    created: Int!
+    description: String!
+    project: Project!
+    status: ObservationStatus!
+}
+
+"The pagination object for elements of type 'Observation'."
+type ObservationPage {
+    "A cursor for elements coming after the current page."
+    after: String
+    "A cursor for elements coming before the current page."
+    before: String
+    "The elements of type 'Observation' in this page."
+    data: [Observation]!
+}
+
+type Position {
+    "The document's ID."
+    _id: ID!
+    "The document's timestamp."
+    _ts: Long!
+    candidates(
+        "The pagination cursor."
+        _cursor: String,
+        "The number of items to return per page."
+        _size: Int
+    ): UserPage!
+    description: String!
+    limit: Int!
+    "Candidates that were confirmed for the position"
+    participants(
+        "The pagination cursor."
+        _cursor: String,
+        "The number of items to return per page."
+        _size: Int
+    ): UserPage!
+    project: Project!
+    title: String!
+}
+
+"The pagination object for elements of type 'Position'."
+type PositionPage {
+    "A cursor for elements coming after the current page."
+    after: String
+    "A cursor for elements coming before the current page."
+    before: String
+    "The elements of type 'Position' in this page."
+    data: [Position]!
+}
+
+type Project {
+    "The document's ID."
+    _id: ID!
+    "The document's timestamp."
+    _ts: Long!
+    created: Int!
+    description: String!
+    end: Int!
+    image: String
+    location: Location!
+    observations(
+        "The pagination cursor."
+        _cursor: String,
+        "The number of items to return per page."
+        _size: Int
+    ): ObservationPage!
+    owner: User!
+    positions(
+        "The pagination cursor."
+        _cursor: String,
+        "The number of items to return per page."
+        _size: Int
+    ): PositionPage!
+    start: Int!
+    status: ProjectStatus!
+    title: String!
+    type: ProjectType!
+}
+
+"The pagination object for elements of type 'Project'."
+type ProjectPage {
+    "A cursor for elements coming after the current page."
+    after: String
+    "A cursor for elements coming before the current page."
+    before: String
+    "The elements of type 'Project' in this page."
+    data: [Project]!
+}
+
+type Query {
+    allProjects(
+        "The pagination cursor."
+        _cursor: String,
+        "The number of items to return per page."
+        _size: Int
+    ): ProjectPage!
+    allUsers(
+        "The pagination cursor."
+        _cursor: String,
+        "The number of items to return per page."
+        _size: Int
+    ): UserPage!
+    "Find a document from the collection of 'AuthPayload' by its id."
+    findAuthPayloadByID(
+        "The 'AuthPayload' document's ID"
+        id: ID!
+    ): AuthPayload
+    "Find a document from the collection of 'Observation' by its id."
+    findObservationByID(
+        "The 'Observation' document's ID"
+        id: ID!
+    ): Observation
+    "Find a document from the collection of 'Position' by its id."
+    findPositionByID(
+        "The 'Position' document's ID"
+        id: ID!
+    ): Position
+    "Find a document from the collection of 'Project' by its id."
+    findProjectByID(
+        "The 'Project' document's ID"
+        id: ID!
+    ): Project
+    "Find a document from the collection of 'User' by its id."
+    findUserByID(
+        "The 'User' document's ID"
+        id: ID!
+    ): User
+    me: User!
+}
+
+type User {
+    "The document's ID."
+    _id: ID!
+    "The document's timestamp."
+    _ts: Long!
+    applications(
+        "The pagination cursor."
+        _cursor: String,
+        "The number of items to return per page."
+        _size: Int
+    ): PositionPage!
+    approved: Boolean
+    country_code: String!
+    created: Int!
+    email: String!
+    email_verified: Boolean
+    first_name: String!
+    image: String
+    last_name: String!
+    phone_number: String!
+    positions(
+        "The pagination cursor."
+        _cursor: String,
+        "The number of items to return per page."
+        _size: Int
+    ): PositionPage!
+    projects(
+        "The pagination cursor."
+        _cursor: String,
+        "The number of items to return per page."
+        _size: Int
+    ): ProjectPage!
+    status: UserStatus!
+}
+
+"The pagination object for elements of type 'User'."
+type UserPage {
+    "A cursor for elements coming after the current page."
+    after: String
+    "A cursor for elements coming before the current page."
+    before: String
+    "The elements of type 'User' in this page."
+    data: [User]!
+}
+
+enum ObservationStatus {
+    FIXED
+    POINTED
+    REVISE
+}
+
+enum ProjectStatus {
+    APPROVAL
+    CANCELLED
+    ENDED
+    FULL
+    PROTOTYPE
+    RECRUITING
+}
+
+enum ProjectType {
+    EPHEMERAL
+    PERMANENT
+    RECURRENT
+}
+
+enum UserStatus {
+    ADMIN
+    GUEST
+    VOLUNTEER
+}
+
+"'AuthPayload' input values"
+input AuthPayloadInput {
+    token: String!
+    user: AuthPayloadUserRelation
+}
+
+"Allow manipulating the relationship between the types 'AuthPayload' and 'User' using the field 'AuthPayload.user'."
+input AuthPayloadUserRelation {
+    "Connect a document of type 'User' with the current document using its ID."
+    connect: ID
+    "Create a document of type 'User' and associate it with the current document."
+    create: UserInput
+}
+
+input CreateProjectInput {
+    description: String!
+    location: LocationInput!
+    title: String!
+    type: ProjectType!
+}
+
+input CreateUserInput {
+    country_code: String!
+    email: String!
+    first_name: String!
+    last_name: String!
+    password: String!
+    phone_number: String!
+}
+
+input LocationInput {
+    address: String
+    latitude: Float!
+    longitude: Float!
+}
+
+input LoginUserInput {
+    email: String!
+    password: String!
+}
+
+input LogoutInput {
+    all_tokens: Boolean
+}
+
+"'Observation' input values"
+input ObservationInput {
+    created: Int!
+    description: String!
+    project: ObservationProjectRelation
+    status: ObservationStatus!
+}
+
+"Allow manipulating the relationship between the types 'Observation' and 'Project' using the field 'Observation.project'."
+input ObservationProjectRelation {
+    "Connect a document of type 'Project' with the current document using its ID."
+    connect: ID
+    "Create a document of type 'Project' and associate it with the current document."
+    create: ProjectInput
+}
+
+"Allow manipulating the relationship between the types 'Position' and 'User'."
+input PositionCandidatesRelation {
+    "Connect one or more documents of type 'User' with the current document using their IDs."
+    connect: [ID]
+    "Create one or more documents of type 'User' and associate them with the current document."
+    create: [UserInput]
+    "Disconnect the given documents of type 'User' from the current document using their IDs."
+    disconnect: [ID]
+}
+
+"'Position' input values"
+input PositionInput {
+    candidates: PositionCandidatesRelation
+    description: String!
+    limit: Int!
+    "Candidates that were confirmed for the position"
+    participants: PositionParticipantsRelation
+    project: PositionProjectRelation
+    title: String!
+}
+
+"Allow manipulating the relationship between the types 'Position' and 'User'."
+input PositionParticipantsRelation {
+    "Connect one or more documents of type 'User' with the current document using their IDs."
+    connect: [ID]
+    "Create one or more documents of type 'User' and associate them with the current document."
+    create: [UserInput]
+    "Disconnect the given documents of type 'User' from the current document using their IDs."
+    disconnect: [ID]
+}
+
+"Allow manipulating the relationship between the types 'Position' and 'Project' using the field 'Position.project'."
+input PositionProjectRelation {
+    "Connect a document of type 'Project' with the current document using its ID."
+    connect: ID
+    "Create a document of type 'Project' and associate it with the current document."
+    create: ProjectInput
+}
+
+"'Project' input values"
+input ProjectInput {
+    created: Int!
+    description: String!
+    end: Int!
+    image: String
+    location: LocationInput!
+    observations: ProjectObservationsRelation
+    owner: ProjectOwnerRelation
+    positions: ProjectPositionsRelation
+    start: Int!
+    status: ProjectStatus!
+    title: String!
+    type: ProjectType!
+}
+
+"Allow manipulating the relationship between the types 'Project' and 'Observation'."
+input ProjectObservationsRelation {
+    "Connect one or more documents of type 'Observation' with the current document using their IDs."
+    connect: [ID]
+    "Create one or more documents of type 'Observation' and associate them with the current document."
+    create: [ObservationInput]
+    "Disconnect the given documents of type 'Observation' from the current document using their IDs."
+    disconnect: [ID]
+}
+
+"Allow manipulating the relationship between the types 'Project' and 'User' using the field 'Project.owner'."
+input ProjectOwnerRelation {
+    "Connect a document of type 'User' with the current document using its ID."
+    connect: ID
+    "Create a document of type 'User' and associate it with the current document."
+    create: UserInput
+}
+
+"Allow manipulating the relationship between the types 'Project' and 'Position'."
+input ProjectPositionsRelation {
+    "Connect one or more documents of type 'Position' with the current document using their IDs."
+    connect: [ID]
+    "Create one or more documents of type 'Position' and associate them with the current document."
+    create: [PositionInput]
+    "Disconnect the given documents of type 'Position' from the current document using their IDs."
+    disconnect: [ID]
+}
+
+"Allow manipulating the relationship between the types 'User' and 'Position'."
+input UserApplicationsRelation {
+    "Connect one or more documents of type 'Position' with the current document using their IDs."
+    connect: [ID]
+    "Create one or more documents of type 'Position' and associate them with the current document."
+    create: [PositionInput]
+    "Disconnect the given documents of type 'Position' from the current document using their IDs."
+    disconnect: [ID]
+}
+
+"'User' input values"
+input UserInput {
+    applications: UserApplicationsRelation
+    approved: Boolean
+    country_code: String!
+    created: Int!
+    email: String!
+    email_verified: Boolean
+    first_name: String!
+    image: String
+    last_name: String!
+    phone_number: String!
+    positions: UserPositionsRelation
+    projects: UserProjectsRelation
+    status: UserStatus!
+}
+
+"Allow manipulating the relationship between the types 'User' and 'Position'."
+input UserPositionsRelation {
+    "Connect one or more documents of type 'Position' with the current document using their IDs."
+    connect: [ID]
+    "Create one or more documents of type 'Position' and associate them with the current document."
+    create: [PositionInput]
+    "Disconnect the given documents of type 'Position' from the current document using their IDs."
+    disconnect: [ID]
+}
+
+"Allow manipulating the relationship between the types 'User' and 'Project'."
+input UserProjectsRelation {
+    "Connect one or more documents of type 'Project' with the current document using their IDs."
+    connect: [ID]
+    "Create one or more documents of type 'Project' and associate them with the current document."
+    create: [ProjectInput]
+    "Disconnect the given documents of type 'Project' from the current document using their IDs."
+    disconnect: [ID]
+}
+
+
+scalar Date
+
+scalar Time
+
+"The `Long` scalar type represents non-fractional signed whole numeric values. Long can represent values between -(2^63) and 2^63 - 1."
+scalar Long

@@ -1,0 +1,32 @@
+{
+  "name": "Main Site GraphQL Schema",
+  "schemaPath": "schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "Development GraphQL Endpoint": {
+        "url": "https://graphql.fauna.com/graphql",
+        "headers": {
+          "user-agent": "JS GraphQL",
+          "authorization": "Bearer fnAD137ztqACB6ciu1z2ESzx89-wHHTSwT2Cm3DJ"
+        },
+        "introspect": true
+      },
+      "Staging GraphQL Endpoint": {
+        "url": "https://graphql.fauna.com/graphql",
+        "headers": {
+          "user-agent": "JS GraphQL",
+          "authorization": "Bearer fnAD137ztqACB6ciu1z2ESzx89-wHHTSwT2Cm3DJ"
+        },
+        "introspect": false
+      },
+      "Production GraphQL Endpoint": {
+        "url": "https://graphql.fauna.com/graphql",
+        "headers": {
+          "user-agent": "JS GraphQL",
+          "authorization": "Bearer fnAD137ztqACB6ciu1z2ESzx89-wHHTSwT2Cm3DJ"
+        },
+        "introspect": false
+      }
+    }
+  }
+}

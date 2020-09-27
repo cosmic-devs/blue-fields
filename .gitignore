@@ -2,3 +2,16 @@ node_modules
 .DS_Store
 dist
 *.local
+
+# Logs
+yarn-error.log
+
+# Editor directories
+.idea
+.vscode
+
+# Environment files
+.env
+
+# Deploy services
+.netlify
