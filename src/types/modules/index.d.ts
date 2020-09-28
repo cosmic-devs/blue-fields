@@ -5,38 +5,48 @@ declare module 'vue-modules' {
   }
 
   export enum ProjectType {
-    EPHEMERAL = 1,
-    RECURRENT,
-    PERMANENT
+    EPHEMERAL = 'EPHEMERAL',
+    RECURRENT = 'RECURRENT',
+    PERMANENT = 'PERMANENT'
   }
 
   export enum ProjectStatus {
-    PLANNED = 1,
-    RECRUITING,
-    FULL
+    ENDED = 'ENDED',
+    FULL = 'FULL',
+    RECRUITING = 'RECRUITING',
+    APPROVAL = 'APPROVAL',
+    PROTOTYPE = 'PROTOTYPE',
+    CANCELLED = 'CANCELLED'
   }
 
-  export enum PositionType {
-    VOLUNTEER = 1,
-    FIELD
+  export enum ObservationStatus {
+    POINTED = 'POINTED',
+    REVISE = 'REVISE',
+    FIXED = 'FIXED'
   }
 
   export enum UserStatus {
-    GUEST = 1,
-    VOLUNTEER,
-    WORKER,
-    CREATOR,
-    ADMIN
+    GUEST = 'GUEST',
+    VOLUNTEER = 'VOLUNTEER',
+    ADMIN = 'ADMIN'
   }
 
   export interface Position {
-    type: PositionType
+    _id: string
     project: Project
     title: string
     limit: number
     description: string
-    candidates: User[]
-    participants: User[]
+    candidates: {
+      before: string
+      after: string
+      data: User[]
+    }
+    participants: {
+      before: string
+      after: string
+      data: User[]
+    }
   }
 
   export interface Location {
@@ -45,36 +55,112 @@ declare module 'vue-modules' {
     address: string
   }
 
+  export interface LocationInput {
+    latitude: number
+    longitude: number
+    address?: string
+  }
+
   export interface User {
-    applications: Position[]
-    approved: boolean
-    country_code: string
+    _id: string
+    created: number
+    first_name: string
+    last_name: string
     email: string
     email_verified: boolean
-    first_name: string
-    image: ''
-    last_name: string
+    country_code: string
     phone_number: string
-    positions: Position[]
-    projects: Project[]
+    approved: boolean
+    image: string
     status: UserStatus
+    projects: {
+      before: string
+      after: string
+      data: Project[]
+    }
+    applications: {
+      before: string
+      after: string
+      data: Position[]
+    }
+    positions: {
+      before: string
+      after: string
+      data: Position[]
+    }
+  }
+
+  export interface CreateUserInput {
+    email: string
+    country_code: string
+    first_name: string
+    last_name: string
+    password: string
+    phone_number: string
+    image?: string
+  }
+
+  export interface LoginUserInput {
+    email: string
+    password: string
+  }
+
+  export interface LogoutInput {
+    all_tokens?: boolean
   }
 
   export interface Project {
-    approved: boolean
-    creator: User
-    description: string
-    end: string
-    id: number
-    image: string
-    location: Location
-    positions: Position[]
-    status: ProjectStatus
-    start: string
+    _id: string
+    created: number
     title: string
+    description: string
+    location: Location
+    start: number
+    end: number
+    image: string
     type: ProjectType
+    status: ProjectStatus
+    owner: User
+    positions: {
+      before: string
+      after: string
+      data: Position[]
+    }
+    observations: {
+      before: string
+      after: string
+      data: Observation[]
+    }
   }
 
+  export interface CreateProjectInput {
+    title: string
+    description: string
+    location: LocationInput
+    type: ProjectType
+    start?: number
+    end?: number
+    image?: string
+  }
+
+  export interface Observation {
+    _id: string
+    created: number
+    owner: User
+    description: string
+    status: ObservationStatus
+    project: Project
+  }
+
+  export interface ObservationProjectRelation {
+    connect: string
+  }
+
+  export interface CreateObservationInput {
+    title: string
+    description: string
+    project: ObservationProjectRelation
+  }
 }
 
 declare module 'en' {}
