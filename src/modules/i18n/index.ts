@@ -1,1 +1,1 @@
-export { I18nModule } from './I18n-module'
+export { I18nModule } from './i18n-module'
