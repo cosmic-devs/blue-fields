@@ -1,26 +1,30 @@
 import { ActionTree } from 'vuex'
-import { HomeState } from './state'
-import { Project } from 'vue-modules'
+import { DashboardState } from './state'
+import { CreateProjectInput, Project } from 'vue-modules'
 import ApolloClient from 'apollo-client'
 import { createApolloClient } from '../../apollo'
-import { GET_ALL_PROJECTS } from '../apollo/queries'
 import {
   API_ERROR,
   API_REQUEST,
-  ALL_PROJECTS
-} from '../../../modules/home/store/action-types'
+  ADD_PROJECT
+} from '../../../modules/dashboard/store/action-types'
+import { CREATE_PROJECT } from '../../dashboard/apollo/mutations'
 
 const graphqlClient: ApolloClient<any> = createApolloClient()
 
-export const actions: ActionTree<any, HomeState> = {
-  [ALL_PROJECTS]({ commit }) {
+export const actions: ActionTree<any, DashboardState> = {
+  [ADD_PROJECT]({ commit }, payload: CreateProjectInput) {
     return new Promise((resolve, reject) => {
       commit(API_REQUEST)
       graphqlClient
-        .query({ query: GET_ALL_PROJECTS })
+        .mutate({
+          mutation: CREATE_PROJECT,
+          variables: { project: { ...payload } }
+        })
         .then(({ data }) => {
-          const projects: Project[] = data.allProjects.data
-          commit(ALL_PROJECTS, projects)
+          const project: Project = data.createProject
+          commit('auth/ADD_PROJECT', project, { root: true })
+          commit('home/ADD_PROJECT', project, { root: true })
           resolve(data)
         })
         .catch((err) => {

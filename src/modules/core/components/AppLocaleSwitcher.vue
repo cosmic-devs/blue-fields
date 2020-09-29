@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form class="inline">
     <label class="sr-only" for="lang-switcher">{{ t('language') }}</label>
     <select id="lang-switcher" v-model="locale">
       <option value="en">EN</option>
