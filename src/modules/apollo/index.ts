@@ -8,7 +8,7 @@ export const createApolloClient: () => ApolloClient<any> = () => {
     const token = localStorage.getItem('token')
     return token
       ? `Bearer ${token}`
-      : `Bearer ${import.meta.env.VITE_FAUNADB_TOKEN}`
+      : `Bearer fnAD137ztqACB6ciu1z2ESzx89-wHHTSwT2Cm3DJ`
   }
 
   const cache = new InMemoryCache() as InMemoryCache
