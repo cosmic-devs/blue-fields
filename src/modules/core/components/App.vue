@@ -1,15 +1,43 @@
 <template>
-  <app-locale-switcher />
-  <router-view />
+  <span v-if="status === RequestStatus.LOADING">loading...</span>
+  <template v-else>
+    <app-nav-bar />
+    <router-view />
+  </template>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import AppLocaleSwitcher from './AppLocaleSwitcher.vue'
+import { defineComponent, computed } from 'vue'
+import { Store, useStore } from 'vuex'
+import { RequestStatus } from '../../../enums'
+import { User } from 'vue-modules'
+import { Router, useRouter } from 'vue-router'
+import AppNavBar from './AppNavBar.vue'
 
 export default defineComponent({
   name: 'App',
-  components: { AppLocaleSwitcher }
+  components: { AppNavBar },
+  setup() {
+    const store: Store<unknown> = useStore()
+    const router: Router = useRouter()
+
+    const isLoggedIn = computed(() => store.getters['auth/IS_LOGGED_IN'])
+    const user = computed(() => store.getters['auth/ME'] as User)
+
+    if (isLoggedIn.value && !user.value._id) {
+      store.dispatch('auth/ME').catch((err) => {
+        if (err.message.includes('Invalid database secret.')) {
+          router.push('/login')
+          return
+        }
+        console.log(err.message)
+      })
+    }
+
+    const status = computed(() => store.getters['auth/STATUS'] as RequestStatus)
+
+    return { status, RequestStatus }
+  }
 })
 </script>
 
