@@ -1,6 +1,4 @@
 <template>
-  <img alt="Vue logo" src="../assets/logo.png" />
-  <hello-world msg="Hello Vue 3.0 + Vite" />
   <p v-for="project in projects" :key="project._id" class="bg-green-500">
     {{ project }}
   </p>
@@ -11,10 +9,8 @@ import { computed, defineComponent, watch, inject } from 'vue'
 import { Project } from 'vue-modules'
 import { Store, useStore } from 'vuex'
 import { useI18n } from 'vue-i18n'
-import HelloWorld from '../components/HelloWorld.vue'
 
 export default defineComponent({
-  components: { HelloWorld },
   setup() {
     const store: Store<unknown> = useStore()
     const { t, locale } = useI18n()
