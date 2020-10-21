@@ -155,7 +155,8 @@ module.exports = {
       40: '10rem',
       48: '12rem',
       56: '14rem',
-      64: '16rem'
+      64: '16rem',
+      96: '24rem'
     },
     backgroundColor: (theme) => theme('colors'),
     backgroundImage: {
@@ -203,6 +204,7 @@ module.exports = {
       default: '0.25rem',
       md: '0.375rem',
       lg: '0.5rem',
+      xl: '1rem',
       full: '9999px'
     },
     borderWidth: {
@@ -218,9 +220,9 @@ module.exports = {
       default:
         '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
       md:
-        '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        '0px 12px 40px #7080B026',
       lg:
-        '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+        '0px 16px 40px #7090B026',
       xl:
         '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
       '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
@@ -274,7 +276,8 @@ module.exports = {
         '"Segoe UI Symbol"',
         '"Noto Color Emoji"'
       ],
-      serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
+      serif: ['Mulish', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
+      serif2: ['Poppins', 'serif'],
       mono: [
         'Menlo',
         'Monaco',
@@ -590,7 +593,9 @@ module.exports = {
       75: '.75',
       90: '.9',
       95: '.95',
+      98: '.98',
       100: '1',
+      102: '1.02',
       105: '1.05',
       110: '1.1',
       125: '1.25',
