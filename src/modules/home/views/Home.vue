@@ -69,6 +69,12 @@
       vehicula, non rhoncus tortor bibendum. Nullam scelerisque metus placerat
     </p>
   </header>
+
+  <section class="overflow-hidden">
+    <!-- Projects section -->
+    <projects class="px-10 xl:px-0" />
+  </section>
+
   <p v-for="project in projects" :key="project._id" class="bg-green-500">
     {{ project }}
   </p>
@@ -79,8 +85,10 @@ import { computed, defineComponent, watch, inject } from 'vue'
 import { Project } from 'vue-modules'
 import { Store, useStore } from 'vuex'
 import { useI18n } from 'vue-i18n'
+import Projects from '../components/Projects.vue'
 
 export default defineComponent({
+  components: { Projects },
   setup() {
     const store: Store<unknown> = useStore()
     const { t, locale } = useI18n()
@@ -118,6 +126,11 @@ export default defineComponent({
 <style scoped>
 h1 {
   @apply font-bold font-serif2;
+}
+
+a:focus,
+a:hover {
+  @apply text-blue-500 outline-none;
 }
 
 .text-shadow {
