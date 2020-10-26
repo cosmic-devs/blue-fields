@@ -73,6 +73,12 @@
   <section class="overflow-hidden">
     <!-- Projects section -->
     <projects class="px-10 xl:px-0" />
+
+    <!-- How-to section -->
+    <how-to class="px-10 xl:px-0" />
+
+    <!-- Headlines section -->
+    <home-headlines class="px-10 xl:px-0" />
   </section>
 
   <p v-for="project in projects" :key="project._id" class="bg-green-500">
@@ -86,9 +92,11 @@ import { Project } from 'vue-modules'
 import { Store, useStore } from 'vuex'
 import { useI18n } from 'vue-i18n'
 import Projects from '../components/Projects.vue'
+import HowTo from '../components/HowTo.vue'
+import HomeHeadlines from '../components/Headlines.vue'
 
 export default defineComponent({
-  components: { Projects },
+  components: { Projects, HowTo, HomeHeadlines },
   setup() {
     const store: Store<unknown> = useStore()
     const { t, locale } = useI18n()
