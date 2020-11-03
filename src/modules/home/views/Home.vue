@@ -29,10 +29,7 @@
 
       <div class="absolute top-0 w-full h-full">
         <section
-          class="container flex flex-col justify-center h-full pb-12 mx-auto
-          sm:items-center sm:flex-row-reverse
-          md:pb-20
-          lg:max-w-screen-lg lg:pb-32"
+          class="container flex flex-col justify-center h-full pb-12 mx-auto sm:items-center sm:flex-row-reverse md:pb-20 lg:max-w-screen-lg lg:pb-32"
         >
           <img
             class="w-40 mx-auto mt-6 sm:w-3/12 sm:mt-0 lg:w-1/3"
@@ -81,6 +78,8 @@
     <home-headlines class="px-10 xl:px-0" />
   </section>
 
+  <footer-home />
+
   <p v-for="project in projects" :key="project._id" class="bg-green-500">
     {{ project }}
   </p>
@@ -94,9 +93,10 @@ import { useI18n } from 'vue-i18n'
 import Projects from '../components/Projects.vue'
 import HowTo from '../components/HowTo.vue'
 import HomeHeadlines from '../components/Headlines.vue'
+import FooterHome from '../components/FooterHome.vue'
 
 export default defineComponent({
-  components: { Projects, HowTo, HomeHeadlines },
+  components: { FooterHome, Projects, HowTo, HomeHeadlines },
   setup() {
     const store: Store<unknown> = useStore()
     const { t, locale } = useI18n()
