@@ -12,11 +12,11 @@
           </h1>
           <div class="pl-4 text-left sm:pl-16 lg:pl-8 xl:pl-16">
             <a href="/" class="flex items-center mb-4 text-3xl font-bold">
-              <icon class="mr-3" type="profile"></icon>
+              <icon class="w-6 h-6 mr-3" type="profile"></icon>
               Recruiting
             </a>
             <a href="/" class="flex items-center mb-4 text-xl">
-              <icon class="mr-3" type="profile"></icon>
+              <icon class="w-6 h-6 mr-3" type="profile"></icon>
               Completed
             </a>
           </div>
